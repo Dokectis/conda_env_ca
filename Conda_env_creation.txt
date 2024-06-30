@@ -1,0 +1,50 @@
+(base) C:\Users\Kentr\miniconda3\envs>conda create --name sql_sf
+Retrieving notices: ...working... done
+Channels:
+ - defaults
+Platform: win-64
+Collecting package metadata (repodata.json): done
+Solving environment: done
+
+## Package Plan ##
+
+  environment location: C:\Users\Kentr\miniconda3\envs\sql_sf
+
+
+
+Proceed ([y]/n)? y
+
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done
+#
+# To activate this environment, use
+#
+#     $ conda activate sql_sf
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+(base) C:\Users\Kentr\miniconda3\envs>
+
+# To activate this environment, use
+#
+#     $ conda activate sql_sf
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+(base) C:\Users\Kentr\miniconda3\envs>conda env list
+# conda environments:
+#
+Clean Data With Python     C:\Users\Kentr\.conda\envs\Clean Data With Python
+SnowflakeBuild           C:\Users\Kentr\.conda\envs\SnowflakeBuild
+pythontestdb             C:\Users\Kentr\.conda\envs\pythontestdb
+base                  *  C:\Users\Kentr\miniconda3
+myconda101               C:\Users\Kentr\miniconda3\envs\myconda101
+qcmode                   C:\Users\Kentr\miniconda3\envs\qcmode
+sql_sf                   C:\Users\Kentr\miniconda3\envs\sql_sf
