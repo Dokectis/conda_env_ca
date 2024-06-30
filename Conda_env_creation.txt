@@ -1,4 +1,8 @@
-(base) C:\Users\Kentr\miniconda3\envs>conda create --name sql_sf
+This is the procces to create a New "Miniconda" Envioroment,
+
+
+
+(base) C:\Users\User\miniconda3\envs>conda create --name sql_sf
 Retrieving notices: ...working... done
 Channels:
  - defaults
@@ -8,7 +12,7 @@ Solving environment: done
 
 ## Package Plan ##
 
-  environment location: C:\Users\Kentr\miniconda3\envs\sql_sf
+  environment location: C:\Users\User\miniconda3\envs\sql_sf
 
 
 
@@ -27,7 +31,7 @@ Executing transaction: done
 #     $ conda deactivate
 
 
-(base) C:\Users\Kentr\miniconda3\envs>
+(base) C:\Users\User\miniconda3\envs>
 
 # To activate this environment, use
 #
@@ -38,13 +42,84 @@ Executing transaction: done
 #     $ conda deactivate
 
 
-(base) C:\Users\Kentr\miniconda3\envs>conda env list
+(base) C:\Users\User\miniconda3\envs>conda env list
 # conda environments:
 #
-Clean Data With Python     C:\Users\Kentr\.conda\envs\Clean Data With Python
-SnowflakeBuild           C:\Users\Kentr\.conda\envs\SnowflakeBuild
-pythontestdb             C:\Users\Kentr\.conda\envs\pythontestdb
-base                  *  C:\Users\Kentr\miniconda3
-myconda101               C:\Users\Kentr\miniconda3\envs\myconda101
-qcmode                   C:\Users\Kentr\miniconda3\envs\qcmode
-sql_sf                   C:\Users\Kentr\miniconda3\envs\sql_sf
+Clean Data With Python     C:\Users\User\.conda\envs\Clean Data With Python
+SnowflakeBuild           C:\Users\User\.conda\envs\SnowflakeBuild
+pythontestdb             C:\Users\User\.conda\envs\pythontestdb
+base                  *  C:\Users\User\miniconda3
+myconda101               C:\Users\User\miniconda3\envs\myconda101
+qcmode                   C:\Users\User\miniconda3\envs\qcmode
+sql_sf                   C:\Users\User\miniconda3\envs\sql_sf
+
+
+
+-----------------------------------------------------------------------------
+
+
+
+To create a new SQL Server user and grant the necessary permissions, you'll need to perform a few steps. These steps involve using SQL Server Management Studio (SSMS) or running the necessary SQL commands to create the user. Once the user is created, you can update your connection string in the Jupyter Notebook to use the new user.
+
+Step 1: Create a New SQL Server User
+You can use SSMS or run the following SQL commands to create a new SQL Server login and user:
+
+Create a new login:
+
+sql
+Copy code
+CREATE LOGIN new_user_login WITH PASSWORD = 'StrongPasswordHere';
+Create a new user in your database:
+
+sql
+Copy code
+USE YourDatabaseName;
+CREATE USER new_user FOR LOGIN new_user_login;
+Grant necessary permissions to the new user:
+
+sql
+Copy code
+-- Grant db_datareader and db_datawriter roles
+ALTER ROLE db_datareader ADD MEMBER new_user;
+ALTER ROLE db_datawriter ADD MEMBER new_user;
+
+-- Grant additional permissions if necessary
+-- For example, to allow creating and altering tables
+GRANT ALTER, CREATE TABLE TO new_user;
+
+
+https://know-star.blogspot.com/2023/07/connecting-python-to-sql-database-using.html
+https://www.youtube.com/watch?v=Tskgae7d88o
+
+
+Step 2 - Create a connection string.
+
+If using Windows Authentication, construct the connection string as below-
+
+cnxn_str = ("Driver={ODBC Driver 17 for SQL Server};"
+
+            "Server=DatabaseServerName;"
+
+            "Database=Training;"
+
+            "Trusted_Connection=yes;")
+
+If using username and password, create a connection string as per the below code.
+
+
+@@ -0,0 +1,14 @@
+CREATE LOGIN userName WITH PASSWORD = 'pasww';
+
+
+USE sandbox;
+CREATE USER userName FOR LOGIN userName;
+
+
+-- Grant db_datareader and db_datawriter roles
+ALTER ROLE db_datareader ADD MEMBER userName;
+ALTER ROLE db_datawriter ADD MEMBER userName;
+
+-- Grant additional permissions if necessary
+-- For example, to allow creating and altering tables
+GRANT ALTER, CREATE TABLE TO userName;
+
