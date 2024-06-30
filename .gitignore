@@ -1,0 +1,5 @@
+# Ignore SQL files
+*.sql
+
+# Ignore text files
+*.txt
